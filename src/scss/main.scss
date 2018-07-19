@@ -1,0 +1,243 @@
+
+
+$component-padding-sides: 3em;
+$component-padding-tops: 2.5em;
+
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 13px;
+    box-sizing: border-box;
+    @media(min-width: 500px) and (max-width: 768px) {
+        font-size: 12px;
+    }
+
+    @media(min-width: 768px) and (max-width: 1200px) {
+        font-size: 11px;
+    }
+
+    @media(min-width: 1200px) {
+        font-size: 10px;
+    }
+}
+
+body {
+    background:#ebe8cf;
+    padding: 0; margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, input, textarea, button, span {
+    margin: 0; padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Palatino';
+    
+}
+
+p, input, textarea, button, span, div {
+    font-family: 'Trebuchet MS';
+}
+
+
+
+#root {
+    position: relative;
+    top: 0; left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    .chuck-container {
+        background: #EEE48A;
+        border-radius: 2px;
+        width: calc(100vw - 3rem);
+        min-height: 45rem;
+       height: 500px;
+
+ 
+        max-width: 50em;
+        
+        padding: $component-padding-tops $component-padding-sides 150px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        top: 50%;
+
+        @media(max-width: 500px) {
+            padding: 1.5em 2em 300px;
+              height: calc(100vh - 80px);
+              min-height: 0px;
+        }
+    }
+}
+
+.chuck-joke-container {
+    h3 {
+        font-size: 2em;
+        position: relative;
+        line-height: 1.3em;
+        transform-origin: 50% 50%;
+        width: 100%;
+        transition: 0.2s opacity ease-in-out;
+        &.loading {
+            opacity: 0.5;
+            animation-name: wobble;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    text-align: center;
+    padding-top: 40px;
+            
+            &.fadeout {
+                opacity: 0;
+            }
+        }
+        &.done {
+            opacity: 1;
+            &.long {
+                @media(max-width: 500px) {
+                    font-size : 1.8em;
+                }
+                
+            }
+
+            &.longer {
+                 @media(max-width: 500px) {
+                    font-size : 1.7em;
+                }
+            }
+
+            &.longest {
+                 @media(max-width: 500px) {
+                    font-size : 1.6em;
+                }
+            }
+        }
+    }
+    
+}
+
+.chuck-hud-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: $component-padding-tops $component-padding-sides;
+  
+    text-align: center;
+   
+    height: auto;
+    .hud-top {
+  
+     
+        button {
+            padding: 1em 1.5em;
+            font-size: 1.6em;
+            border: none; outline: none;
+            background-color: #6B6A5F;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 4px rgba(50, 50, 50, 0.1);
+            cursor: pointer;
+            transform: scale(1) translateZ(0) translateY(0px);
+            backface-visibility: hidden;
+            transition: 0.25s box-shadow ease-in-out, 0.25s transform ease-in-out, 0.25s background-color ease-in;
+            position: relative;
+            @media(max-width: 500px) {
+                padding: 0.5em 1em;
+            }
+            &:hover {
+                box-shadow: 0px 3px 10px 4px rgba(50, 50, 50, 0.25);
+                transform: scale(1.005) translateZ(0) translateY(-1px);
+              
+                background-color: rgb(86, 85, 77);
+            }
+        }
+    }
+
+    .hud-bottom {
+         display: flex;
+         justify-content: space-around;
+         margin-top: 1.5em;
+        flex-wrap: wrap;
+        @media(max-width: 500px) {
+            margin-top: 1em;
+        }
+        .checkbox-container {
+            font-size: 1.6em;
+            margin: 10px;
+            @media(max-width: 500px) {
+                margin: 5px;
+            }
+            label {
+                display: block;
+                margin-right: 0.5rem;
+                width: 100%;
+                color: #777;
+                font-weight: bold;
+                transition: 0.35s color;
+                margin-top: 0.5rem;
+                @media(max-width: 500px) {
+                    font-size: 0.8em;
+                }
+            }
+            input {
+                display: inline-block;
+                outline: none; border: none;
+                background: transparent;
+                visibility: hidden;
+                transition: background 0.35s ease-out;
+                
+                &:hover {
+                    backface-visibility: hidden;
+                    + label {
+                        color: black;
+                    }
+                    &:after {
+                        background:rgb(145, 144, 127)
+                    }
+                }
+              
+                &:checked {
+                   + label {
+                       color: black;
+                   }
+                    &:after {
+                        background: #6B673E;
+                        cursor: initial;
+                    }
+                }
+                &:after {
+                    visibility: visible;
+                    content: "";
+                    display: inline-block;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    background: #B8B6A2;
+                    border-radius: 50%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 0.2rem;
+                    cursor: pointer;
+                    transition: background 0.25s ease-out;
+                    
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@keyframes wobble {
+    0%   {transform: rotate(-10deg);}
+   
+    50% {transform: rotate(10deg);}
+    100% {transform: rotate( -10deg)}
+}
